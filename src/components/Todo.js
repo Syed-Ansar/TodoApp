@@ -28,7 +28,7 @@ const Todo = ({tasks,setTasks}) => {
           <div className='flex flex-col'>
 
         <TodoItem heading={'Active Todos'} active={activeTasks} tasks={tasks} setTasks={setTasks} sort={'<'} />
-        { activeTasks.length === 0 && <h1 className='font-semibold text-xs mb-3 text-red-500 md:w-[200px]'>Create Your Tasks</h1>}
+        { activeTasks.length === 0 && <h1 className='font-semibold text-xs mb-3 text-red-500 md:w-[200px] m-auto'>Create Your Tasks</h1>}
 
           </div>
           <hr className='w-[60%] mx-auto my-10 md:hidden' />
