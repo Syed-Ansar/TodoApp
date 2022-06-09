@@ -1,4 +1,4 @@
-import { PlusCircleIcon } from '@heroicons/react/outline';
+import { PlusCircleIcon,RefreshIcon } from '@heroicons/react/outline';
 import { useEffect, useState } from 'react';
 import Todo from './Todo';
 
@@ -45,14 +45,17 @@ const Todos = () => {
       <form onSubmit={(e) => addTask(e) } className='h-[100px] flex items-center justify-center'>
         <div>
         <input placeholder='Enter todo...' value={task} onChange={(e) => handleInput(e)} type="text" className='w-[250px] md:w-[450px] h-10 rounded-md font-medium outline-white bg-blue-900 pl-4 placeholder:text-sm placeholder:text-gray-300' />
-        <li className='text-blue-300 flex text-[10px] font-semibold mt-1 ml-2 justify-start'>Enter to submit Todo.</li>
+        <li className='hidden text-blue-300 md:flex text-[8px] font-semibold mt-1.5 ml-2 justify-start'>Press enter to submit Todo.</li>
         </div>
         <button className='md:hidden'>
-          <PlusCircleIcon className='h-10 w-10 p-2 bg-gray-800 text-white ml-2 rounded-md -mt-[20px]'/>
+          <PlusCircleIcon className='h-10 w-10 p-2 bg-gray-800 text-white ml-2 rounded-md'/>
         </button>
       </form>
-      <div>
-        <h1 onClick={ () => handleClear()} className='h-10 p-2 bg-gray-800 ml-2 rounded-md cursor-pointer mb-6 font-bold text-red-600 mt-1'>Reset</h1>
+      <div className=''>
+        <h1 onClick={ () => handleClear()} className='h-10 bg-gray-800 ml-2 rounded-md cursor-pointer mb-6 font-bold mt-1 w-32 flex flex-row items-center justify-center'>
+          <p>Reset</p>
+          <RefreshIcon className='h-5 w-5 ml-2 text-red-600'/>
+        </h1>
       </div>
       </div>
       <div className='flex flex-col md:flex-row w-full justify-center'>
