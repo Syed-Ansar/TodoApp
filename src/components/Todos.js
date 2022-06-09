@@ -31,9 +31,11 @@ const Todos = () => {
 
 
   
-
   const handleDelete = (task)=>{
-    const deleted = tasks.filter((t)=>t.id !== task.id);
+    console.log("Task " + task);
+    const deleted = tasks.filter((item) => {
+          return item.id !== task;
+    });
     setTasks(deleted);
     localStorage.setItem("localTasks", JSON.stringify(deleted))
   }
@@ -69,15 +71,13 @@ const Todos = () => {
         <div>
         {
             tasks && tasks?.map((item) =>(
-              <div key={item.id}>
-              <main className='w-[300px] md:w-[400px] bg-blue-900 h-10 flex items-center justify-between m-auto transition-all transform ease-in-out rounded-lg border-[1.5px] border-white hover:scale-x-105 mb-4'>
+              <main key={item.id} className='w-[300px] md:w-[400px] bg-blue-900 h-10 flex items-center justify-between m-auto transition-all transform ease-in-out rounded-lg border-[1.5px] border-white hover:scale-x-105 mb-4'>
             <p className='ml-3 font-semibold capitalize'>{item.title}</p>
             <div className='flex flex-row-reverse'>
             <TrashIcon onClick={() => handleDelete(item.id) } className='w-5 h-5 mr-3 text-red-500 cursor-pointer'/>
             <BadgeCheckIcon className='w-5 h-5 mr-3 text-green-500 cursor-pointer'/>
             </div>
-        </main>
-              </div>
+          </main>
             ))
         }
     </div>

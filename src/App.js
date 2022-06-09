@@ -7,7 +7,6 @@ function App() {
     <div className='text-center'
     >
       <Todos/>
-
     </div>
   );
 }
