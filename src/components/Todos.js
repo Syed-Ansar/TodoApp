@@ -70,7 +70,11 @@ const Todos = () => {
         {/* Todo */}
         <div>
         {
-            tasks && tasks?.map((item) =>(
+            tasks && tasks
+            ?.sort((a, b) => {
+              return a.id < b.id ? 1 : -1
+            })
+            ?.map((item) =>(
               <main key={item.id} className='w-[300px] md:w-[400px] bg-blue-900 h-10 flex items-center justify-between m-auto transition-all transform ease-in-out rounded-lg border-[1.5px] border-white hover:scale-x-105 mb-4'>
             <p className='ml-3 font-semibold capitalize'>{item.title}</p>
             <div className='flex flex-row-reverse'>
