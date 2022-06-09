@@ -20,7 +20,7 @@ const Todo = ({tasks,setTasks}) => {
           </div>
           <hr className='w-[60%] mx-auto my-10 md:hidden' />
           <div className='flex flex-col md:ml-32'>
-        <TodoItem heading={'Completed Todos'} active={completedTasks} tasks={tasks} setTasks={setTasks} sort={'>'} />
+        <TodoItem heading={'Completed Todos'} active={completedTasks} tasks={tasks} setTasks={setTasks} />
         { completedTasks.length === 0 && <h1 className='font-semibold text-xs mb-3 text-green-500 w-[180px] mx-auto'>The key is in not spending time, but in investing it.</h1>}
           </div>
     </div>
