@@ -1,13 +1,13 @@
+import { PlusCircleIcon } from '@heroicons/react/outline';
 import { useEffect, useState } from 'react';
-import { BadgeCheckIcon, PlusCircleIcon, TrashIcon } from '@heroicons/react/outline'
+import Todo from './Todo';
 
 
 const Todos = () => {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  // console.log(tasks.id);
-
+  // Handling Input
   const handleInput = (e) => {
     setTask(e.target.value)
   }
@@ -19,32 +19,22 @@ const Todos = () => {
     }
 },[])
 
+  // Adding task to localStorage
   const addTask = (e) => {
     e.preventDefault();
     if (task) {
-      const newTask = { id: new Date().getTime().toString(), title: task };
+      const newTask = { id: new Date().getTime().toString(), title: task,status: false };
       setTasks([...tasks, newTask]);
       localStorage.setItem("localTasks", JSON.stringify([...tasks, newTask]));
       setTask("");
     }
   };
 
-
-  
-  const handleDelete = (task)=>{
-    console.log("Task " + task);
-    const deleted = tasks.filter((item) => {
-          return item.id !== task;
-    });
-    setTasks(deleted);
-    localStorage.setItem("localTasks", JSON.stringify(deleted))
-  }
-
+  // Resting or Clearing localstorage Data.
   const handleClear=()=>{
       setTasks([]);
       localStorage.removeItem("localTasks");
   }
-
 
   return (
     <div className="text-center">
@@ -54,7 +44,7 @@ const Todos = () => {
       <div className='flex flex-col md:flex-row justify-center items-center'>
       <form onSubmit={(e) => addTask(e) } className='h-[100px] flex items-center justify-center'>
         <div>
-        <input placeholder='Enter todo...' value={task} onChange={(e) => handleInput(e)} type="text" className='w-[250px] md:w-[450px] h-10 rounded-md font-medium bg-blue-900 pl-4 placeholder:text-sm placeholder:text-gray-300' />
+        <input placeholder='Enter todo...' value={task} onChange={(e) => handleInput(e)} type="text" className='w-[250px] md:w-[450px] h-10 rounded-md font-medium outline-white bg-blue-900 pl-4 placeholder:text-sm placeholder:text-gray-300' />
         <li className='text-blue-300 flex text-[10px] font-semibold mt-1 ml-2 justify-start'>Enter to submit Todo.</li>
         </div>
         <button className='md:hidden'>
@@ -66,25 +56,8 @@ const Todos = () => {
       </div>
       </div>
       <div className='flex flex-col md:flex-row w-full justify-center'>
-
         {/* Todo */}
-        <div>
-        {
-            tasks && tasks
-            ?.sort((a, b) => {
-              return a.id < b.id ? 1 : -1
-            })
-            ?.map((item) =>(
-              <main key={item.id} className='w-[300px] md:w-[400px] bg-blue-900 h-10 flex items-center justify-between m-auto transition-all transform ease-in-out rounded-lg border-[1.5px] border-white hover:scale-x-105 mb-4'>
-            <p className='ml-3 font-semibold capitalize'>{item.title}</p>
-            <div className='flex flex-row-reverse'>
-            <TrashIcon onClick={() => handleDelete(item.id) } className='w-5 h-5 mr-3 text-red-500 cursor-pointer'/>
-            <BadgeCheckIcon className='w-5 h-5 mr-3 text-green-500 cursor-pointer'/>
-            </div>
-          </main>
-            ))
-        }
-    </div>
+        <Todo tasks={tasks} setTasks={setTasks}/>
       </div>
     </div>
   );
