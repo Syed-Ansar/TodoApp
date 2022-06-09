@@ -38,7 +38,7 @@ const TodoItem = ({tasks,setTasks,active,heading,sort}) => {
 
   return (
     <div>
-        <h1 className='font-bold text-2xl mb-5'>{heading}</h1>
+         <h1 className='w-[300px] lg:w-[400px] m-auto font-bold text-2xl mb-5 p-1 rounded-sm border-[1.5px]'>{heading}</h1>
         {
             active && active?.sort((a, b) => {
               return sort ? a.id  <  b.id ? 1 : -1 : a.id  >  b.id ? 1 : -1
