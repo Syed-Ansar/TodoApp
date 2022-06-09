@@ -17,8 +17,8 @@ const Todos = () => {
           if(localStorage.getItem("localTasks")){
           const storedList = JSON.parse(localStorage.getItem("localTasks"));
           setTasks(storedList);
-    }
-},[])
+        }
+      },[])
 
   // Adding task to localStorage
       const addTask = (e) => {
